@@ -1,0 +1,39 @@
+:root {
+    --grey-background: hsl(228, 33%, 97%);
+}
+
+.comment {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    column-gap: 10px;
+    border-radius: 10px;
+}
+
+.scoreColumn {
+    background-color: var(--grey-background);
+    width: 40px;
+    border-radius: 10px;
+}
+
+.avatar {
+    max-width: 30px;
+    height: auto;
+}
+
+.username, .timestamp {
+    margin-left: 10px;
+  }
+
+.replyButton {
+    position: absolute;
+    right: 30px;
+}
+
+.commentHeader {
+    display: flex;
+    margin-bottom: 10px;
+}

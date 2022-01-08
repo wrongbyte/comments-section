@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import JSONdata from './data';
+import { useState } from 'react';
+import Comment from './components/Comment';
 
 function App() {
+  // Os comentários iniciais no file são o estado inicial do componente; seria o equivalente a fazer uma query inicial na db
+  const [data, setData] = useState(JSONdata);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className='comments-column'>
+      { data.comments.map((comment) => {
+        return (
+        <Comment
+            key={comment.id}
+            comment={comment.content}
+            image={comment.user.image.png}
+            username={comment.user.username}
+            timeSince={comment.createdAt}
+        />
+        )
+      }) 
+      }
+    </main>
   );
 }
 
