@@ -1,22 +1,35 @@
 :root {
     --grey-background: hsl(228, 33%, 97%);
+    --blue: hsl(238, 40%, 52%);
+    --text-color: hsl(211, 10%, 45%);
+    --username-color: hsl(212, 24%, 26%);
 }
 
 .comment {
-    position: relative;
-    background-color: white;
-    padding: 20px;
-    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 10fr;
+
+    position: relative;
+    background-color: white;
+    padding: 30px;
+    margin-top: 20px;
     column-gap: 10px;
     border-radius: 10px;
 }
 
 .scoreColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
     background-color: var(--grey-background);
     width: 40px;
+    gap: 20px;
     border-radius: 10px;
+}
+
+.flex-item {
+    margin: 0 auto;
 }
 
 .avatar {
@@ -33,7 +46,64 @@
     right: 30px;
 }
 
+/* ======= FONTS AND TYPOLOGY ======== */
+
+.username, .replyButton, .flex-item {
+    font-weight: 700;
+}
+
+.commentContent, .timestamp {
+    color: var(--text-color);
+}
+
+.username {
+    color: var(--username-color);
+}
+
+.replyButton, .flex-item {
+    color: var(--blue);
+}
+
+
 .commentHeader {
     display: flex;
     margin-bottom: 10px;
+}
+
+
+/* Make the reply button and scores button responsive */
+@media (max-width: 500px) {
+    .comment {
+        display: grid;
+        grid-template-rows: 2fr 1fr;
+        grid-template-columns: 1fr;
+
+        position: relative;
+        background-color: white;
+        padding: 20px;
+        margin-top: 20px;
+        column-gap: 10px;
+        border-radius: 10px;
+    }
+
+    .scoreColumn {
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        width: 90px;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        align-items: center;
+        justify-content: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: var(--grey-background);
+    }
+
+    .replyButton {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+    }
 }

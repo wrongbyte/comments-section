@@ -18,6 +18,7 @@ function App() {
             image={comment.user.image.png}
             username={comment.user.username}
             timeSince={comment.createdAt}
+            score={comment.score}
         />
         )
       }) 

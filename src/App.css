@@ -1,3 +1,7 @@
+* {
+  font-family: 'Rubik', sans-serif;
+}
+
 body {
   background-color: hsl(228, 33%, 97%);
 }
