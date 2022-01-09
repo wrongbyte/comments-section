@@ -12,14 +12,15 @@ function App() {
     <main className='comments-column'>
       { data.comments.map((comment) => {
         return (
-        <Comment
+          <Comment
             key={comment.id}
             comment={comment.content}
             image={comment.user.image.png}
             username={comment.user.username}
             timeSince={comment.createdAt}
             score={comment.score}
-        />
+            replies={comment.replies}
+          />
         )
       }) 
       }

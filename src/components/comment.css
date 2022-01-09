@@ -8,7 +8,6 @@
 .comment {
     display: grid;
     grid-template-columns: 1fr 10fr;
-
     position: relative;
     background-color: white;
     padding: 30px;
@@ -70,7 +69,19 @@
     margin-bottom: 10px;
 }
 
+.commentReplies {
+    display: inline-block;
+    position: relative;
+    margin-left: 40px;
+}
 
+.verticalLine {
+    position: absolute;
+    left: -20px;
+    top: 23px;
+    border-left: 3px solid hsl(223, 19%, 93%);
+    height: 100%;
+}
 /* Make the reply button and scores button responsive */
 @media (max-width: 500px) {
     .comment {
@@ -106,4 +117,5 @@
         right: 30px;
         bottom: 30px;
     }
+
 }
