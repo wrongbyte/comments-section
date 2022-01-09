@@ -7,11 +7,12 @@ body {
 }
 
 .comments-column {
+  position: relative;
   margin: 0 auto;
-  width: 700px;
+  width: 750px;
 }
 
-@media(max-width: 710px) {
+@media(max-width: 760px) {
   .comments-column {
       width: 90vw;
   }
