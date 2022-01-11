@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './comment.css';
 
 export default function Comment ({
+    id,
     currentUser,
     comment,
     image,
@@ -12,6 +13,7 @@ export default function Comment ({
     updateScore,
     updateComment,
     setDeleteComment
+
 }) {
     const [newReply, setNewReply] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -21,16 +23,16 @@ export default function Comment ({
     useEffect(() => {
         const curr = username === currentUser;
         setCurrent(curr);
-    }, [currentUser, username]) 
+    }, [currentUser, username]);
     
     return (
         <>
             <div className='comment'>
 
                 <div className='scoreColumn'>
-                    <img className="flex-item"src='./images/icon-plus.svg'/>
+                    <img className="flex-item upvote"src='./images/icon-plus.svg'/>
                     <span className="flex-item">{score}</span>
-                    <img className="flex-item" src='./images/icon-minus.svg'/>
+                    <img className="flex-item downvote" src='./images/icon-minus.svg'/>
                 </div>
 
                 <div className='contentColumn'>
@@ -42,21 +44,20 @@ export default function Comment ({
                         { current 
                             ? 
                             <>
-                            <div className='deleteButton'>
-                            <img src='./images/icon-delete.svg' alt='reply'/>
-                            <span> Delete</span>
+                            <div className='deleteButton' onClick={() => setDeleteComment(id)}>
+                                <img src='./images/icon-delete.svg' alt='reply'/>
+                                <span> Delete</span>
                             </div>
                             <div className='editButton'>
-                            <img src='./images/icon-edit.svg' alt='reply'/>
-                            <span> Edit</span>
+                                <img src='./images/icon-edit.svg' alt='reply'/>
+                                <span> Edit</span>
                             </div>
                             </>
                             
                             :
                             <div className='replyButton'>
-                                {/* Note: we are using span and image, two inline elements, to make sure they align side-by-side */}
-                            <img src='./images/icon-reply.svg' alt='reply'/>
-                            <span> Reply</span> 
+                                <img src='./images/icon-reply.svg' alt='reply'/>
+                                <span> Reply</span> 
                             </div>
                         }
                     </div>

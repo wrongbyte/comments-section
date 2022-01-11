@@ -45,6 +45,11 @@
     right: 30px;
 }
 
+.deleteButton, .editButton, .replyButton, .upvote, .downvote {
+    cursor: pointer;
+}
+
+
 .deleteButton {
     color: hsl(358, 79%, 66%);
     position: absolute;
@@ -104,7 +109,7 @@
 }
 
 /* Make the reply button and scores button responsive */
-@media (max-width: 500px) {
+@media (max-width: 620px) {
     .comment {
         display: grid;
         grid-template-rows: 2fr 1fr;
@@ -130,6 +135,10 @@
         padding-left: 10px;
         padding-right: 10px;
         background-color: var(--grey-background);
+    }
+
+    .deleteButton, .editButton, .replyButton {
+        cursor: pointer;
     }
 
     .replyButton, .editButton {

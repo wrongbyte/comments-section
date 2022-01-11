@@ -39,10 +39,11 @@
 
 .replyInput:focus {
     outline: none;
-    border-color: hsl(238, 40%, 52%);
+    border: 1px solid hsl(238, 40%, 52%);
 }
 
 .sendButton {
+    cursor: pointer;
     position: relative;
     left:50px;
 }

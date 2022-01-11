@@ -1,15 +1,12 @@
 import './newComment.css';
-import { useState } from 'react';
 
 export default function newComment ({
     currentUser
 }) {
-    // const [commentPosted, setCommentPosted] = useState(false);
-    const userImage = './images/avatars/image-juliusomo.png';
     return (
         <div className='newComment'>
             <div className='avatarColumn'>
-                <img className='avatarReply' src={userImage} alt='current user avatar'/>
+                <img className='avatarReply' src={currentUser.image.png} alt='current user avatar'/>
             </div>
             
             <div className='inputColumn'>
@@ -18,6 +15,7 @@ export default function newComment ({
                 placeholder='Add a comment...'
                 ></textarea>
             </div>
+            
             <div className='sendColumn'>
                 <button className='sendButton'>SEND</button>
             </div>
