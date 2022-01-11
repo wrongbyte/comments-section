@@ -15,7 +15,8 @@ function App() {
       { data.comments.map((comment) => {
         return (
             <Comment
-              key={comment.id}
+              key={comment.id}  
+              currentUser={data.currentUser.username}
               comment={comment.content}
               image={comment.user.image.png}
               username={comment.user.username}
@@ -27,7 +28,7 @@ function App() {
       })
       }
       <NewComment
-      currentUser='juliusomo'
+      currentUser={data.currentUser}
       />
     </main>
     

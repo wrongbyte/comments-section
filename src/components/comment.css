@@ -40,14 +40,20 @@
     margin-left: 10px;
   }
 
-.replyButton {
+.replyButton, .editButton {
     position: absolute;
     right: 30px;
 }
 
+.deleteButton {
+    color: hsl(358, 79%, 66%);
+    position: absolute;
+    right: 100px;
+}
+
 /* ======= FONTS AND TYPOLOGY ======== */
 
-.username, .replyButton, .flex-item {
+.username, .replyButton, .flex-item, .editButton, .deleteButton {
     font-weight: 700;
 }
 
@@ -59,7 +65,7 @@
     color: var(--username-color);
 }
 
-.replyButton, .flex-item {
+.replyButton, .flex-item, .editButton {
     color: var(--blue);
 }
 
@@ -82,6 +88,21 @@
     border-left: 3px solid hsl(223, 19%, 93%);
     height: 100%;
 }
+
+.youTag {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: relative;
+    right: 90px;
+    top:100px;
+    background-color: hsl(238, 40%, 52%);
+    text-align: center;
+    font-size: small;
+    color: white;
+    width: 35px;
+    height: 18px;
+}
+
 /* Make the reply button and scores button responsive */
 @media (max-width: 500px) {
     .comment {
@@ -111,10 +132,15 @@
         background-color: var(--grey-background);
     }
 
-    .replyButton {
+    .replyButton, .editButton {
         position: absolute;
         right: 30px;
         bottom: 30px;
+    }
+
+    .deleteButton {
+        bottom: 30px;
+        right: 90px;
     }
 
 }
