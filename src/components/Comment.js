@@ -13,6 +13,7 @@ export default function Comment ({
     updateScore,
     updateComment,
     setDeleteComment
+    // passamos a função de deletar o comentário da parent (App) para a child (Comment). Aqui dentro, vamos utilizar dessa função para atualizar o valor de deleteComment e jogar de volta pra parent, que, com esse valor atualizado, vai exibir o modal caso true.
 
 }) {
     const [newReply, setNewReply] = useState(false);
@@ -28,7 +29,6 @@ export default function Comment ({
     return (
         <>
             <div className='comment'>
-
                 <div className='scoreColumn'>
                     <img className="flex-item upvote"src='./images/icon-plus.svg'/>
                     <span className="flex-item">{score}</span>
@@ -72,6 +72,7 @@ export default function Comment ({
                         <div className='commentReplies'>
                             <div className='verticalLine'></div>
                             <Comment
+                                setDeleteComment={setDeleteComment}
                                 key={reply.id}
                                 currentUser={currentUser}
                                 comment={reply.content}
@@ -80,6 +81,7 @@ export default function Comment ({
                                 timeSince={reply.createdAt}
                                 score={reply.score}
                                 replies={reply.replies}
+                                id={reply.id}
                             />
                         </div>
                 )
