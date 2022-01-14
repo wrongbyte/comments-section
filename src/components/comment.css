@@ -46,7 +46,7 @@
     right: 30px;
 }
 
-.deleteButton, .editButton, .replyButton, .upvote, .downvote {
+.deleteButton, .editButton, .replyButton, .upvote, .downvote, .updateButton {
     cursor: pointer;
 }
 
@@ -160,7 +160,7 @@
         background-color: var(--grey-background);
     }
 
-    .deleteButton, .editButton, .replyButton {
+    .deleteButton, .editButton, .replyButton, .updateButton {
         cursor: pointer;
     }
 

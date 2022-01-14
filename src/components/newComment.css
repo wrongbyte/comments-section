@@ -32,6 +32,7 @@
 }
 
 .replyInput {
+    color: hsl(212, 24%, 26%);;
     resize: none;
     border: 2px solid hsl(223, 19%, 93%);
     width: 100%;

@@ -13,7 +13,8 @@ export default function Comment ({
     updateScore,
     updateComment,
     setDeleteComment
-    // passamos a função de deletar o comentário da parent (App) para a child (Comment). Aqui dentro, vamos utilizar dessa função para atualizar o valor de deleteComment e jogar de volta pra parent, que, com esse valor atualizado, vai exibir o modal caso true.
+
+    // TODO: refactor comment HTML
 
 }) {
     const [newReply, setNewReply] = useState(false);
@@ -69,12 +70,20 @@ export default function Comment ({
 
                     <div className='updateInput'>
                         <textarea 
+                            defaultValue={edit}
+                            onChange={(e) => {setEdit(e.target.value)}}
                             className='replyInput'
                             placeholder='Add a comment...'
-                        ></textarea>
+                        />
                     </div>
 
-                    <div className='updateRow'><button className='updateButton'>UPDATE</button></div>
+                    <div className='updateRow'>
+                        <button className='updateButton' onClick={() => {
+                            updateComment(edit, id);
+                            setEdit(false);
+                            }
+                        }>UPDATE</button>
+                    </div>
 
                 </div> {/* contentColumn*/}
 
@@ -101,7 +110,7 @@ export default function Comment ({
                                     <img src='./images/icon-delete.svg' alt='reply'/>
                                     <span> Delete</span>
                                 </div>
-                                <div className='editButton' onClick={() => setEdit(id)}>
+                                <div className='editButton' onClick={() => setEdit(comment)}>
                                     <img src='./images/icon-edit.svg' alt='reply'/>
                                     <span> Edit</span>
                                 </div>
@@ -125,6 +134,7 @@ export default function Comment ({
                         <div className='commentReplies'>
                             <div className='verticalLine'></div>
                             <Comment
+                                updateComment={updateComment}
                                 setDeleteComment={setDeleteComment}
                                 key={reply.id}
                                 currentUser={currentUser}

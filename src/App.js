@@ -8,9 +8,28 @@ import NewComment from './components/NewComment';
 import DeleteModal from './components/DeleteModal';
 
 function App() {
-  // Os comentários iniciais no file são o estado inicial do componente; seria o equivalente a fazer uma query inicial na db
+
   const [data, setData] = useState(JSONdata);
   const [deleteComment, setDeleteComment] = useState(false);
+
+  const updateComment = (updatedContent, id) => {
+    let temp = data;
+    for (let comment of temp.comments) {
+      if (comment.id === id) {
+        comment.content = updatedContent;
+        break;
+      } 
+      if (comment.replies.length > 0) {
+        for (let reply of comment.replies) {
+          if (reply.id === id) {
+            reply.content = updatedContent;
+            break;
+          }
+        }
+      }
+    }
+    setData({...temp})
+  }
 
   return (
     <>
@@ -27,6 +46,7 @@ function App() {
       { data.comments.map((comment) => {
         return (
             <Comment
+              updateComment={updateComment}
               setDeleteComment={setDeleteComment}
               key={comment.id}  
               currentUser={data.currentUser.username}
@@ -38,7 +58,7 @@ function App() {
               replies={comment.replies}
               id={comment.id}
             />
-      )
+          )
       })
       }
       <NewComment
