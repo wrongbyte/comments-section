@@ -6,9 +6,10 @@
 }
 
 .comment {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 10fr;
-    position: relative;
+    grid-template-areas: "score content";
     background-color: white;
     padding: 30px;
     margin-top: 20px;
@@ -49,7 +50,6 @@
     cursor: pointer;
 }
 
-
 .deleteButton {
     color: hsl(358, 79%, 66%);
     position: absolute;
@@ -74,7 +74,6 @@
     color: var(--blue);
 }
 
-
 .commentHeader {
     display: flex;
     margin-bottom: 10px;
@@ -82,6 +81,7 @@
 
 .commentReplies {
     display: inline-block;
+    width: 94%;
     position: relative;
     margin-left: 40px;
 }
@@ -106,6 +106,29 @@
     color: white;
     width: 35px;
     height: 18px;
+}
+
+.disabled {
+    cursor: default !important;
+    opacity: 50% !important;
+}
+
+.updateRow {
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.updateButton {
+    position: absolute!important;
+    margin-right: 15px;
+    right: 0px;
+    font-size: large;
+    color: white;
+    background-color: hsl(238, 40%, 52%);
+    border-color: transparent;
+    border-radius: 10px;
+    width: 110px;
+    height: 50px;
 }
 
 /* Make the reply button and scores button responsive */
@@ -152,4 +175,15 @@
         right: 90px;
     }
 
+    .updateRow {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    
+}
+
+@media (max-width: 760px) {
+    .adjust-width {
+        width: auto;
+    }
 }

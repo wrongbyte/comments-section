@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import JSONdata from './data';
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 
 import Comment from './components/Comment';
 import NewComment from './components/NewComment';

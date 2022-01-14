@@ -26,6 +26,9 @@
     border-radius: 10px;
     width: 110px;
     height: 50px;
+    cursor: pointer;
+    position: relative;
+    left:50px;
 }
 
 .replyInput {
@@ -40,12 +43,6 @@
 .replyInput:focus {
     outline: none;
     border: 1px solid hsl(238, 40%, 52%);
-}
-
-.sendButton {
-    cursor: pointer;
-    position: relative;
-    left:50px;
 }
 
 @media (max-width: 500px) {
