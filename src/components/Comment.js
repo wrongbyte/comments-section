@@ -29,13 +29,12 @@ export default function Comment ({
     
     return (
         <>
-        {   edit !== false 
-            ?
+        {               
             <div className='comment'>
                 <div className='scoreColumn'>
-                    <img className="flex-item upvote"src='./images/icon-plus.svg'/>
+                    <img className="flex-item upvote" src='./images/icon-plus.svg' alt="upvote" onClick={() => {}}/>
                     <span className="flex-item">{score}</span>
-                    <img className="flex-item downvote" src='./images/icon-minus.svg'/>
+                    <img className="flex-item downvote" src='./images/icon-minus.svg' alt="downvote" onClick={() => {}}/>
                 </div>
 
                 <div className='contentColumn'>
@@ -48,12 +47,30 @@ export default function Comment ({
 
                             ? 
 
+
+                            edit !== false 
+                            
+                            ?
+
                             <>
                             <div className='deleteButton disabled'>
                                 <img src='./images/icon-delete.svg' alt='reply'/>
                                 <span> Delete</span>
                             </div>
                             <div className='editButton disabled'>
+                                <img src='./images/icon-edit.svg' alt='reply'/>
+                                <span> Edit</span>
+                            </div>
+                            </>
+
+                            :
+
+                            <>
+                            <div className='deleteButton'>
+                                <img src='./images/icon-delete.svg' alt='reply'/>
+                                <span> Delete</span>
+                            </div>
+                            <div className='editButton' onClick={() => setEdit(comment)}>
                                 <img src='./images/icon-edit.svg' alt='reply'/>
                                 <span> Edit</span>
                             </div>
@@ -67,65 +84,41 @@ export default function Comment ({
                             </div>
                         }
                     </div>
+                    
+                    {
+                        edit !== false 
 
-                    <div className='updateInput'>
-                        <textarea 
-                            defaultValue={edit}
-                            onChange={(e) => {setEdit(e.target.value)}}
-                            className='replyInput'
-                            placeholder='Add a comment...'
-                        />
-                    </div>
+                        ?
+                        
+                        <>
+                        <div className='updateInput'>
+                            <textarea 
+                                defaultValue={edit}
+                                onChange={(e) => {setEdit(e.target.value)}}
+                                className='replyInput'
+                                placeholder='Add a comment...'
+                            />
+                        </div>
 
-                    <div className='updateRow'>
-                        <button className='updateButton' onClick={() => {
-                            updateComment(edit, id);
-                            setEdit(false);
-                            }
-                        }>UPDATE</button>
-                    </div>
+                        <div className='updateRow'>
+                            <button className='updateButton' onClick={() => {
+                                updateComment(edit, id);
+                                setEdit(false);
+                                }
+                            }>UPDATE</button>
+                        </div>
+                        </>
+
+                        :
+
+                        <div className='commentContent'>{comment}</div>
+                    }
+
 
                 </div> {/* contentColumn*/}
 
             {/* comment*/}
             </div> 
-            :
-                <div className='comment'>
-                    <div className='scoreColumn'>
-                        <img className="flex-item upvote"src='./images/icon-plus.svg'/>
-                        <span className="flex-item">{score}</span>
-                        <img className="flex-item downvote" src='./images/icon-minus.svg'/>
-                    </div>
-
-                    <div className='contentColumn'>
-                        <div className='commentHeader'>
-                            <img className='avatar' src={image} alt='avatar'/>
-                            <div className='username'>{username}</div>
-                            { current ? <div className='youTag'>you</div> : ""}
-                            <div className='timestamp'>{timeSince}</div>
-                            { current 
-                                ? 
-                                <>
-                                <div className='deleteButton' onClick={() => setDeleteComment(id)}>
-                                    <img src='./images/icon-delete.svg' alt='reply'/>
-                                    <span> Delete</span>
-                                </div>
-                                <div className='editButton' onClick={() => setEdit(comment)}>
-                                    <img src='./images/icon-edit.svg' alt='reply'/>
-                                    <span> Edit</span>
-                                </div>
-                                </>
-                                
-                                :
-                                <div className='replyButton'>
-                                    <img src='./images/icon-reply.svg' alt='reply'/>
-                                    <span> Reply</span> 
-                                </div>
-                            }
-                        </div>
-                        <div className='commentContent'>{comment}</div>
-                    </div>
-                </div>
         }
 
         {replies?.length > 0 && 
