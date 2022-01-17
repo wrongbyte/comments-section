@@ -44,40 +44,31 @@ export default function Comment ({
                         { current ? <div className='youTag'>you</div> : ""}
                         <div className='timestamp'>{timeSince}</div>
                         { current 
-
                             ? 
-
-
                             edit !== false 
-                            
-                            ?
-
-                            <>
-                            <div className='deleteButton disabled'>
-                                <img src='./images/icon-delete.svg' alt='reply'/>
-                                <span> Delete</span>
-                            </div>
-                            <div className='editButton disabled'>
-                                <img src='./images/icon-edit.svg' alt='reply'/>
-                                <span> Edit</span>
-                            </div>
-                            </>
-
+                                ?
+                                <>
+                                <div className='deleteButton disabled'>
+                                    <img src='./images/icon-delete.svg' alt='reply'/>
+                                    <span> Delete</span>
+                                </div>
+                                <div className='editButton disabled'>
+                                    <img src='./images/icon-edit.svg' alt='reply'/>
+                                    <span> Edit</span>
+                                </div>
+                                </>
+                                :
+                                <>
+                                <div className='deleteButton' onClick={() => setDeleteComment(id)}>
+                                    <img src='./images/icon-delete.svg' alt='reply'/>
+                                    <span> Delete</span>
+                                </div>
+                                <div className='editButton' onClick={() => setEdit(comment)}>
+                                    <img src='./images/icon-edit.svg' alt='reply'/>
+                                    <span> Edit</span>
+                                </div>
+                                </>
                             :
-
-                            <>
-                            <div className='deleteButton'>
-                                <img src='./images/icon-delete.svg' alt='reply'/>
-                                <span> Delete</span>
-                            </div>
-                            <div className='editButton' onClick={() => setEdit(comment)}>
-                                <img src='./images/icon-edit.svg' alt='reply'/>
-                                <span> Edit</span>
-                            </div>
-                            </>
-                            
-                            :
-
                             <div className='replyButton'>
                                 <img src='./images/icon-reply.svg' alt='reply'/>
                                 <span> Reply</span> 
@@ -87,9 +78,7 @@ export default function Comment ({
                     
                     {
                         edit !== false 
-
                         ?
-                        
                         <>
                         <div className='updateInput'>
                             <textarea 
@@ -108,12 +97,9 @@ export default function Comment ({
                             }>UPDATE</button>
                         </div>
                         </>
-
                         :
-
                         <div className='commentContent'>{comment}</div>
                     }
-
 
                 </div> {/* contentColumn*/}
 
