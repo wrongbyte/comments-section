@@ -32,9 +32,9 @@ export default function Comment ({
         {               
             <div className='comment'>
                 <div className='scoreColumn'>
-                    <img className="flex-item upvote" src='./images/icon-plus.svg' alt="upvote" onClick={() => {}}/>
+                    <img className="flex-item upvote" src='./images/icon-plus.svg' alt="upvote" onClick={() => {updateScore(id, 'upvote')}}/>
                     <span className="flex-item">{score}</span>
-                    <img className="flex-item downvote" src='./images/icon-minus.svg' alt="downvote" onClick={() => {}}/>
+                    <img className="flex-item downvote" src='./images/icon-minus.svg' alt="downvote" onClick={() => {updateScore(id, 'downvote')}}/>
                 </div>
 
                 <div className='contentColumn'>
@@ -115,6 +115,7 @@ export default function Comment ({
                             <Comment
                                 updateComment={updateComment}
                                 setDeleteComment={setDeleteComment}
+                                updateScore={updateScore}
                                 key={reply.id}
                                 currentUser={currentUser}
                                 comment={reply.content}

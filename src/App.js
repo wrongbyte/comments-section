@@ -12,6 +12,25 @@ function App() {
   const [data, setData] = useState(JSONdata);
   const [deleteComment, setDeleteComment] = useState(false);
 
+  const updateScore = (id, action) => {
+    let temp = data;
+    for (let comment of temp.comments) {
+      if (comment.id === id){
+        action == 'upvote' ? comment.score += 1 : comment.score -= 1;
+        break;
+      }
+      if (comment.replies.length > 0) {
+        for (let reply of comment.replies) {
+          if (reply.id === id) {
+            action == 'upvote' ? reply.score += 1 : reply.score -= 1;
+            break;
+          }
+        }
+      }
+    }
+    setData({...temp});
+  }
+
   const updateComment = (updatedContent, id) => {
     let temp = data;
     for (let comment of temp.comments) {
@@ -28,7 +47,7 @@ function App() {
         }
       }
     }
-    setData({...temp})
+    setData({...temp});
   }
 
   return (
@@ -48,6 +67,7 @@ function App() {
             <Comment
               updateComment={updateComment}
               setDeleteComment={setDeleteComment}
+              updateScore={updateScore}
               key={comment.id}  
               currentUser={data.currentUser.username}
               comment={comment.content}
