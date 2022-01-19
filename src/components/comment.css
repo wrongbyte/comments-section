@@ -118,6 +118,10 @@
     font-weight: 900;
 }
 
+.disabled-upvote {
+    cursor: default !important;
+}
+
 .disabled {
     cursor: default !important;
     opacity: 50% !important;

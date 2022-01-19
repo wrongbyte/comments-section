@@ -18,6 +18,7 @@ export default function Comment ({
     addNewReply
 }) {
     const [newReply, setNewReply] = useState(false);
+    const [vote, setVote] = useState(false);
     const [edit, setEdit] = useState(false);
     const [current, setCurrent] = useState(false);
 
@@ -32,9 +33,33 @@ export default function Comment ({
         { 
             <div className='comment'>
                 <div className='scoreColumn'>
-                    <img className="flex-item upvote" src='./images/icon-plus.svg' alt="upvote" onClick={() => {updateScore(id, 'upvote', username)}}/>
-                    <span className="flex-item">{score}</span>
-                    <img className="flex-item downvote" src='./images/icon-minus.svg' alt="downvote" onClick={() => {updateScore(id, 'downvote', username)}}/>
+                    {
+                        // disable voting function for user's own comments
+                        current 
+                        ?
+                        <>
+                         <img className="flex-item upvote disabled-upvote" src='./images/icon-plus.svg' alt="upvote" />
+                         <span className="flex-item">{score}</span>
+                         <img className="flex-item downvote disabled-upvote" src='./images/icon-minus.svg' alt="downvote" />
+                        </>
+                        :
+                        <>
+                        <img className="flex-item upvote" src='./images/icon-plus.svg' alt="upvote" onClick={() => {
+                        if (!vote) {
+                            updateScore(id, 'upvote');
+                            setVote(true);}
+                        }}
+                        />
+                        <span className="flex-item">{score}</span>
+                        <img className="flex-item downvote" src='./images/icon-minus.svg' alt="downvote" onClick={() => {
+                            if (!vote) {
+                                updateScore(id, 'downvote');
+                                setVote(true);}
+                            }}
+                        />
+                        </>
+                    }
+
                 </div>
 
                 <div className='contentColumn'>

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import JSONdata from './data';
 import { useState } from 'react';
@@ -48,8 +47,7 @@ function App() {
     setData({...temp}); 
   }
 
-  const updateScore = (id, action, user) => {
-    if (user === data.currentUser.username) return;
+  const updateScore = (id, action) => {
     let temp = data;
     for (let comment of temp.comments) {
       if (comment.id === id){
