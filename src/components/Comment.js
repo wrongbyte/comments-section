@@ -14,8 +14,6 @@ export default function Comment ({
     updateComment,
     setDeleteComment
 
-    // TODO: refactor comment HTML
-
 }) {
     const [newReply, setNewReply] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -49,27 +47,27 @@ export default function Comment ({
                                 ?
                                 <>
                                 <div className='deleteButton disabled'>
-                                    <img src='./images/icon-delete.svg' alt='reply'/>
+                                    <img src='./images/icon-delete.svg' alt='delete'/>
                                     <span> Delete</span>
                                 </div>
                                 <div className='editButton disabled'>
-                                    <img src='./images/icon-edit.svg' alt='reply'/>
+                                    <img src='./images/icon-edit.svg' alt='edit'/>
                                     <span> Edit</span>
                                 </div>
                                 </>
                                 :
                                 <>
                                 <div className='deleteButton' onClick={() => setDeleteComment(id)}>
-                                    <img src='./images/icon-delete.svg' alt='reply'/>
+                                    <img src='./images/icon-delete.svg' alt='delete'/>
                                     <span> Delete</span>
                                 </div>
                                 <div className='editButton' onClick={() => setEdit(comment)}>
-                                    <img src='./images/icon-edit.svg' alt='reply'/>
+                                    <img src='./images/icon-edit.svg' alt='edit'/>
                                     <span> Edit</span>
                                 </div>
                                 </>
                             :
-                            <div className='replyButton'>
+                            <div className='replyButton' onClick={() => {}}>
                                 <img src='./images/icon-reply.svg' alt='reply'/>
                                 <span> Reply</span> 
                             </div>

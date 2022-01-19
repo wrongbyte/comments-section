@@ -1,13 +1,12 @@
 import './newComment.css';
 import { useState } from 'react';
-let key = 10;
 
 export default function NewComment ({
     addNewComment,
     currentUser
 }) {
     const [newComment, setNewComment] = useState('');
-    
+
     return (
         <div className='newComment'>
             <div className='avatarColumn'>
