@@ -1,8 +1,13 @@
 import './newComment.css';
+import { useState } from 'react';
+let key = 10;
 
-export default function newComment ({
+export default function NewComment ({
+    addNewComment,
     currentUser
 }) {
+    const [newComment, setNewComment] = useState('');
+    
     return (
         <div className='newComment'>
             <div className='avatarColumn'>
@@ -13,11 +18,12 @@ export default function newComment ({
                 <textarea 
                 className='replyInput'
                 placeholder='Add a comment...'
+                onChange={(e) => {setNewComment(e.target.value)}}
                 ></textarea>
             </div>
             
             <div className='sendColumn'>
-                <button className='sendButton'>SEND</button>
+                <button className='sendButton' onClick={() => {addNewComment(newComment)}}>SEND</button>
             </div>
         </div>
     )

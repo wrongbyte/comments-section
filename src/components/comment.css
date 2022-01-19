@@ -30,6 +30,8 @@
 
 .flex-item {
     margin: 0 auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .avatar {

@@ -102,7 +102,6 @@ export default function Comment ({
                     }
 
                 </div> {/* contentColumn*/}
-
             {/* comment*/}
             </div> 
         }

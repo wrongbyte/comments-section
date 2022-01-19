@@ -6,12 +6,13 @@ import { useState } from 'react';
 import Comment from './components/Comment';
 import NewComment from './components/NewComment';
 import DeleteModal from './components/DeleteModal';
+let currentId = 5;
 
 function App() {
 
   const [data, setData] = useState(JSONdata);
   const [deleteComment, setDeleteComment] = useState(false);
-
+ 
   const updateScore = (id, action) => {
     let temp = data;
     for (let comment of temp.comments) {
@@ -50,6 +51,21 @@ function App() {
     setData({...temp});
   }
 
+  const addNewComment = (content) => {
+    if (!/\S/.test(content)) return; // to avoid posting empty comments (only whitespaces)
+    let temp = data;
+    currentId += 1; // ¯\_(ツ)_/¯
+    temp.comments.push({
+      'id': currentId + 1,
+      'content': content,
+      'createdAt': 'Just now',
+      'score': 0,
+      'user': {...data.currentUser},
+      'replies': []
+    });
+    setData({...temp});
+  }
+
   return (
     <>
     { deleteComment !== false &&
@@ -82,6 +98,7 @@ function App() {
       })
       }
       <NewComment
+      addNewComment={addNewComment}
       currentUser={data.currentUser}
       />
     </main>
