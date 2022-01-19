@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import NewReply from './NewReply';
 import './comment.css';
 
 export default function Comment ({
     id,
     currentUser,
+    replyingTo,
     comment,
     image,
     username,
@@ -12,8 +14,8 @@ export default function Comment ({
     replies,
     updateScore,
     updateComment,
-    setDeleteComment
-
+    setDeleteComment,
+    addNewReply
 }) {
     const [newReply, setNewReply] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -21,18 +23,18 @@ export default function Comment ({
 
     // Evaluate to true or false and then render HTML accordingly
     useEffect(() => {
-        const curr = username === currentUser;
+        const curr = username === currentUser.username;
         setCurrent(curr);
     }, [currentUser, username]);
     
     return (
         <>
-        {               
+        { 
             <div className='comment'>
                 <div className='scoreColumn'>
-                    <img className="flex-item upvote" src='./images/icon-plus.svg' alt="upvote" onClick={() => {updateScore(id, 'upvote')}}/>
+                    <img className="flex-item upvote" src='./images/icon-plus.svg' alt="upvote" onClick={() => {updateScore(id, 'upvote', username)}}/>
                     <span className="flex-item">{score}</span>
-                    <img className="flex-item downvote" src='./images/icon-minus.svg' alt="downvote" onClick={() => {updateScore(id, 'downvote')}}/>
+                    <img className="flex-item downvote" src='./images/icon-minus.svg' alt="downvote" onClick={() => {updateScore(id, 'downvote', username)}}/>
                 </div>
 
                 <div className='contentColumn'>
@@ -67,7 +69,7 @@ export default function Comment ({
                                 </div>
                                 </>
                             :
-                            <div className='replyButton' onClick={() => {}}>
+                            <div className='replyButton' onClick={() => {setNewReply(true)}}>
                                 <img src='./images/icon-reply.svg' alt='reply'/>
                                 <span> Reply</span> 
                             </div>
@@ -96,20 +98,33 @@ export default function Comment ({
                         </div>
                         </>
                         :
-                        <div className='commentContent'>{comment}</div>
+                        <div className='commentContent'>
+                            {replyingTo.length > 0 ? <span className='reply-username'>@{replyingTo} </span> : ''}
+                            {comment}
+                        </div>
                     }
 
                 </div> {/* contentColumn*/}
             {/* comment*/}
             </div> 
         }
-
+        {   newReply !== false &&
+                <NewReply
+                    parentId={id}
+                    replyingTo={username}
+                    setNewReply={setNewReply}
+                    addNewReply={addNewReply}
+                    currentUser={currentUser}
+                />
+        }
         {replies?.length > 0 && 
             replies.map((reply) => {
                 return (
                         <div className='commentReplies'>
                             <div className='verticalLine'></div>
                             <Comment
+                                replyingTo={reply.replyingTo}
+                                addNewReply={addNewReply}
                                 updateComment={updateComment}
                                 setDeleteComment={setDeleteComment}
                                 updateScore={updateScore}
@@ -127,6 +142,6 @@ export default function Comment ({
                 )
             })
         }
-        </>
+    </>
     )
 }

@@ -6,14 +6,50 @@ import { useState } from 'react';
 import Comment from './components/Comment';
 import NewComment from './components/NewComment';
 import DeleteModal from './components/DeleteModal';
-let currentId = 5;
+let currentId = 5; // ¯\_(ツ)_/¯
 
 function App() {
 
   const [data, setData] = useState(JSONdata);
   const [deleteComment, setDeleteComment] = useState(false);
- 
-  const updateScore = (id, action) => {
+  
+  const addNewReply = (id, content) => {
+    if (!/\S/.test(content)) return;  // to avoid posting empty comments (only whitespaces)
+    let temp = data;
+    currentId += 1;
+    for (let comment of temp.comments) {
+        if (comment.id === id) {
+        comment.replies.push({
+          'id': currentId + 1,
+          'content': content,
+          'createdAt': 'Just now',
+          'score': 0,
+          'replyingTo': comment.user.username,
+          'user': {...data.currentUser}
+        });
+        break;
+      }
+      if (comment.replies.length > 0) {
+        for (let reply of comment.replies) {
+          if (reply.id === id) {
+            comment.replies.push({
+              'id': currentId + 1,
+              'content': content,
+              'createdAt': 'Just now',
+              'score': 0,
+              'replyingTo': reply.user.username,
+              'user': {...data.currentUser}
+            });
+            break;
+          }
+        }
+      }
+    }
+    setData({...temp}); 
+  }
+
+  const updateScore = (id, action, user) => {
+    if (user === data.currentUser.username) return;
     let temp = data;
     for (let comment of temp.comments) {
       if (comment.id === id){
@@ -52,9 +88,9 @@ function App() {
   }
 
   const addNewComment = (content) => {
-    if (!/\S/.test(content)) return; // to avoid posting empty comments (only whitespaces)
+    if (!/\S/.test(content)) return;
     let temp = data;
-    currentId += 1; // ¯\_(ツ)_/¯
+    currentId += 1;
     temp.comments.push({
       'id': currentId + 1,
       'content': content,
@@ -81,11 +117,13 @@ function App() {
       { data.comments.map((comment) => {
         return (
             <Comment
+              replyingTo=''
+              addNewReply={addNewReply}
               updateComment={updateComment}
               setDeleteComment={setDeleteComment}
               updateScore={updateScore}
               key={comment.id}  
-              currentUser={data.currentUser.username}
+              currentUser={data.currentUser}
               comment={comment.content}
               image={comment.user.image.png}
               username={comment.user.username}
@@ -98,11 +136,10 @@ function App() {
       })
       }
       <NewComment
-      addNewComment={addNewComment}
-      currentUser={data.currentUser}
+        addNewComment={addNewComment}
+        currentUser={data.currentUser}
       />
     </main>
-    
     </>
   );
 }

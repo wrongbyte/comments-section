@@ -72,7 +72,7 @@
     color: var(--username-color);
 }
 
-.replyButton, .flex-item, .editButton {
+.replyButton, .flex-item, .editButton, .reply-username {
     color: var(--blue);
 }
 
@@ -110,6 +110,14 @@
     height: 18px;
 }
 
+/* change color of selected text cuz it's cool */
+::-moz-selection { background: hsl(240, 6%, 90%); }
+::selection { background: hsl(240, 6%, 90%); }
+
+.reply-username {
+    font-weight: 900;
+}
+
 .disabled {
     cursor: default !important;
     opacity: 50% !important;
@@ -145,6 +153,7 @@
         margin-top: 20px;
         column-gap: 10px;
         border-radius: 10px;
+        min-height: 120px;
     }
 
     .scoreColumn {
